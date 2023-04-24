@@ -1,0 +1,75 @@
+<!-- manager.component.html -->
+<h1>Manager Page</h1>
+
+<!-- Add Product Form -->
+<h2>Add Product</h2>
+<form (submit)="addProduct()">
+  <label>
+    Name:
+    <input type="text" [(ngModel)]="newProduct.name" name="name" required>
+  </label>
+  <br>
+  <label>
+    Price:
+    <input type="number" [(ngModel)]="newProduct.price" name="price" required>
+  </label>
+  <br>
+  <label>
+    Image URL:
+    <input type="url" [(ngModel)]="newProduct.imageUrl" name="imageUrl" required>
+  </label>
+  <br>
+  <button type="submit">Add Product</button>
+</form>
+
+<!-- Edit Product Form -->
+<h2>Edit Product</h2>
+<form (submit)="edit_Product()">
+  <label>
+    Product ID:
+    <input type="text" [(ngModel)]="editProductId" name="id" required>
+  </label>
+  <br>
+  <label>
+    Name:
+    <input type="text" [(ngModel)]="editProduct.name" name="name" required>
+  </label>
+  <br>
+  <label>
+    Price:
+    <input type="number" [(ngModel)]="editProduct.price" name="price" required>
+  </label>
+  <br>
+  <label>
+    Image URL:
+    <input type="url" [(ngModel)]="editProduct.imageUrl" name="imageUrl" required>
+  </label>
+  <br>
+  <button type="submit">Update Product</button>
+</form>
+
+<!-- Product List -->
+<h2>Product List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td><img [src]="product.imageUrl" [alt]="product.name" height="50"></td>
+      <td>
+        <button (click)="editProductForm(product)">Edit</button>
+        <button (click)="deleteProduct(product.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
