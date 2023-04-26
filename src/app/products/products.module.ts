@@ -11,6 +11,9 @@ import {HttpClientModule} from "@angular/common/http"
   imports: [
     CommonModule,
     HttpClientModule
+  ],
+  exports: [
+    ProductsComponent
   ]
 })
 export class ProductsModule { }

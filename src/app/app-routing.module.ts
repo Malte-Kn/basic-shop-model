@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
 import { ProductsComponent } from './products/products.component'
-
-
-const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'products', component: ProductsComponent },
-];
+import { ManagerComponent } from './manager/manager.component'
+import { ProductsModule } from './products/products.module';
+const routes: Routes = [];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), ProductsModule],
+  exports: [RouterModule, ProductsComponent]
 })
 export class AppRoutingModule { }

@@ -1,3 +1,5 @@
+<body>
+<h1>{{title}}</h1>
 <div class = "row">
   <div class="products" *ngFor="let product of products$ | async">
     <img [src]="product.imgURL" class="card-img-top" alt="...">
@@ -7,5 +9,7 @@
     </div>
   </div>
   <button onclick="addProducts(testproduct)
-  ngOnInit()">Click me</button>
+  ngOnInit()">ADD </button>
 </div>
+
+</body>

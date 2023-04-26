@@ -1,6 +1,7 @@
 // manager.component.ts
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { ProductsComponent } from '../products/products.component';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -8,13 +9,15 @@ import { Component } from '@angular/core';
 })
 
 
-export class ManagerComponent {
-  products = [
+export class ManagerComponent implements OnInit{
+
+  public products = [
     { id: 1, name: 'Product 1', price: 10, imageUrl: 'https://via.placeholder.com/150' },
     { id: 2, name: 'Product 2', price: 20, imageUrl: 'https://via.placeholder.com/150' },
     { id: 3, name: 'Product 3', price: 30, imageUrl: 'https://via.placeholder.com/150' },
   ];
 
+  products$: Observable<any> | undefined;
   newProduct = { name: '', price: 0, imageUrl: '' };
   editProduct = { id: 0, name: '', price: 0, imageUrl: '' };
   editProductId = 0;
@@ -41,7 +44,10 @@ export class ManagerComponent {
     const productIndex = this.products.findIndex(product => product.id == productId);
     this.products.splice(productIndex, 1);
   }
-  getProducts(){
+  public getProducts(): { id: number; name: string; price: number; imageUrl: string; }[]{
     return this.products;
+  }
+  ngOnInit(): void {
+
   }
 }

@@ -61,15 +61,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
-      <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.price }}</td>
-      <td><img [src]="product.imageUrl" [alt]="product.name" height="50"></td>
-      <td>
+    <div class="products" *ngFor="let product of products$ | async">
+      <img [src]="product.imgURL" class="card-img-top" alt="...">
+      <div class ="card-body">
+        <h3 class="card-title">{{product.name}}</h3>
+        <p class="card-text">{{product.price}}</p>
         <button (click)="editProductForm(product)">Edit</button>
         <button (click)="deleteProduct(product.id)">Delete</button>
-      </td>
-    </tr>
+      </div>
+    </div>
   </tbody>
 </table>
