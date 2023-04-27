@@ -3,7 +3,7 @@
 
 <!-- Add Product Form -->
 <h2>Add Product</h2>
-<form (submit)="addProduct()">
+<form (submit)="addProduct(newProduct)">
   <label>
     Name:
     <input type="text" [(ngModel)]="newProduct.name" name="name" required>
@@ -25,11 +25,6 @@
 <!-- Edit Product Form -->
 <h2>Edit Product</h2>
 <form (submit)="edit_Product()">
-  <label>
-    Product ID:
-    <input type="text" [(ngModel)]="editProductId" name="id" required>
-  </label>
-  <br>
   <label>
     Name:
     <input type="text" [(ngModel)]="editProduct.name" name="name" required>
@@ -60,9 +55,9 @@
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody>
+
     <div class="products" *ngFor="let product of products$ | async">
-      <img [src]="product.imgURL" class="card-img-top" alt="...">
+      <img [src]="product.imageUrl" class="card-img-top" alt="...">
       <div class ="card-body">
         <h3 class="card-title">{{product.name}}</h3>
         <p class="card-text">{{product.price}}</p>
@@ -70,5 +65,5 @@
         <button (click)="deleteProduct(product.id)">Delete</button>
       </div>
     </div>
-  </tbody>
+
 </table>

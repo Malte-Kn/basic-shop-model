@@ -16,7 +16,7 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient,private managerService: ManagerService) { };
 
-  public getProducts(){
+  getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }
   addProducts(product: any): Observable <any>{
