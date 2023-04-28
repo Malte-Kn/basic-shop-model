@@ -19,7 +19,13 @@ export class ManagerService {
   addProducts(product: Product): Observable <any>{
     return this.httpClient.post("http://localhost:3000/products", product);
   }
-  deleteProduct(id: number):Observable <any>{
-    return this.httpClient.delete("http://localhost:3000/products/${id}");
+  deleteProduct(id: number){
+    return this.httpClient.delete("http://localhost:3000/products/"+id);
+  }
+  editProducts(product: Product){
+    return this.httpClient.put("http://localhost:3000/products/", product);
+  }
+  upload(image:File): Observable<Object>{
+    return this.httpClient.post("http://localhost:3000/products/upload",image);
   }
 }

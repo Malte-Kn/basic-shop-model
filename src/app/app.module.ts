@@ -9,7 +9,7 @@ import { ProductsComponent } from './products/products.component';
 //import { ProductsService } from './products.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProductsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxDropzoneModule,
     RouterModule.forRoot([
       {path: '', component: ProductsComponent},
       {path: 'manage', component: ManagerComponent},

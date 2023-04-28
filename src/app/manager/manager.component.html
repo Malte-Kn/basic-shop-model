@@ -15,8 +15,14 @@
   </label>
   <br>
   <label>
-    Image URL:
+    Image:
     <input type="url" [(ngModel)]="newProduct.imageUrl" name="imageUrl" required>
+    <ngx-dropzone (chang)="upload($event)">
+      <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+      <ngx-dropzone-preview currImage [removable]="true" >
+        <ngx-dropzone-label>{{ currImage.name }} ({{ currImage.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
   </label>
   <br>
   <button type="submit">Add Product</button>
@@ -24,7 +30,7 @@
 
 <!-- Edit Product Form -->
 <h2>Edit Product</h2>
-<form (submit)="edit_Product()">
+<form (submit)="edit_Product(editProduct)">
   <label>
     Name:
     <input type="text" [(ngModel)]="editProduct.name" name="name" required>
@@ -65,5 +71,6 @@
         <button (click)="deleteProduct(product.id)">Delete</button>
       </div>
     </div>
+
 
 </table>
