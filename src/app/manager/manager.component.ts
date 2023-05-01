@@ -6,6 +6,12 @@ import { ManagerService } from './manager.service';
 import { Product } from 'basic-shop-backend/src/products/products.service';
 
 
+export interface Producttest {
+  name: string;
+  imageFile: File;
+  price: number;
+  id:number;
+}
 
 @Component({
   selector: 'app-manager',
@@ -15,7 +21,15 @@ import { Product } from 'basic-shop-backend/src/products/products.service';
 
 
 export class ManagerComponent implements OnInit{
-  currImage!: File;
+  filedata:any;
+  fileEvent(e:any){
+    this.filedata = e.target.files[0];
+  }
+
+  shortLink: string = "";
+  loading: boolean = false; // Flag variable
+  file: File = null as any; // Variable to store file
+  currImage: Observable<any> | any;
   currimageUrl: string = '';
   products$: Observable<any> | undefined;
   constructor(private managerService: ManagerService) { }
@@ -23,6 +37,7 @@ export class ManagerComponent implements OnInit{
 
   editProduct: Product = { name: '',  imageUrl: '',price: 0, id : 0};
 
+  testProduct: Producttest = { name: '',  imageFile: <any> File,price: 0, id : 0};
 
   addProduct(product:Product) {
     this.products$ = this.managerService.addProducts(product);
@@ -41,13 +56,35 @@ export class ManagerComponent implements OnInit{
   }
   public getProducts(){
     this.products$ = this.managerService.getProducts();
+    console.log(this.products$);
   }
-  upload(event: any){
-    console.log(event);
-    this.currImage = event.addedFiles;
-    //this.newProduct.imageUrl = this.managerService.upload(this.currImage);
+  public getImage(name: string){
+    this.managerService.getImage(name).subscribe((data) => {
+      this.currImage = data;
+      console.log(this.currImage);
+    });
+    //this.currImage = this.managerService.getImage(name);
   }
+  upload(){
+    this.loading = !this.loading;
+    console.log(this.file);
+    this.managerService.upload(this.file).subscribe(
+      (event: any) => {
+          if (typeof (event) === 'object') {
+              this.shortLink = event.link;
+              this.loading = false;
+          }
+      }
+  );
+}
+  onChange(event: any) {
+    this.file = event.target.files[0];
+}
+
+
   ngOnInit(): void {
+    this.getImage('0.webp');
     this.getProducts();
+
   }
 }

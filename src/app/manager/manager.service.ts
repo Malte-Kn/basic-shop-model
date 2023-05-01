@@ -16,6 +16,9 @@ export class ManagerService {
   getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }
+  getImage(name:string){
+    return this.httpClient.get("http://localhost:3000/products/"+name);
+  }
   addProducts(product: Product): Observable <any>{
     return this.httpClient.post("http://localhost:3000/products", product);
   }
@@ -25,7 +28,14 @@ export class ManagerService {
   editProducts(product: Product){
     return this.httpClient.put("http://localhost:3000/products/", product);
   }
-  upload(image:File): Observable<Object>{
-    return this.httpClient.post("http://localhost:3000/products/upload",image);
+  upload(image:File){
+    // Create form data
+    const formData = new FormData();
+
+    // Store form name as "file" with file data
+    formData.append("file", image, image.name);
+
+    return this.httpClient.post("http://localhost:3000/products/upload",formData);
+
   }
 }

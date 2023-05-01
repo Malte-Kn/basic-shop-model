@@ -16,13 +16,13 @@
   <br>
   <label>
     Image:
-    <input type="url" [(ngModel)]="newProduct.imageUrl" name="imageUrl" required>
-    <ngx-dropzone (chang)="upload($event)">
-      <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-      <ngx-dropzone-preview currImage [removable]="true" >
-        <ngx-dropzone-label>{{ currImage.name }} ({{ currImage.type }})</ngx-dropzone-label>
-      </ngx-dropzone-preview>
-    </ngx-dropzone>
+    <input class="form-control" type="file"
+            (change)="onChange($event)">
+
+    <button (click)="upload()"
+        class="btn btn-success">
+        Upload
+    </button>
   </label>
   <br>
   <button type="submit">Add Product</button>
@@ -71,6 +71,5 @@
         <button (click)="deleteProduct(product.id)">Delete</button>
       </div>
     </div>
-
 
 </table>
