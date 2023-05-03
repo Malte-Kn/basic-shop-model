@@ -10,7 +10,6 @@ import { Product } from 'basic-shop-backend/src/products/products.service';
 export class ManagerService {
 
 
-
   constructor(private httpClient: HttpClient) { };
 
   getProducts(){
@@ -18,6 +17,9 @@ export class ManagerService {
   }
   getImage(name:string): Observable<any>{
     return this.httpClient.get("http://localhost:3000/products/"+name, {responseType: "blob"});
+  }
+  getImages(){
+    return this.httpClient.get<{images: string[]}>("http://localhost:3000/products/images");
   }
   addProducts(product: Product): Observable <any>{
     return this.httpClient.post("http://localhost:3000/products", product);

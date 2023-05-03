@@ -7,12 +7,6 @@ import { Product } from 'basic-shop-backend/src/products/products.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
-export interface Producttest {
-  name: string;
-  imageFile: File;
-  price: number;
-  id:number;
-}
 
 @Component({
   selector: 'app-manager',
@@ -32,26 +26,30 @@ export class ManagerComponent implements OnInit{
   shortLink: string = "";
   loading: boolean = false; // Flag variable
   file: File = null as any; // Variable to store file
+  images: string[] | undefined;
   currImage: Observable<any> | any;
   public currimageUrl: any;
   image!: Blob | MediaSource;
   imageURL:SafeUrl | undefined;
-  imageBlobUrl: string | null = null;
+  imageBlobUrl: any;
   products$: Observable<any> | undefined;
+  product: Product | undefined;
   constructor(private readonly domSanitizer: DomSanitizer, private managerService: ManagerService) { }
-  newProduct: Product = { name: '',  imageUrl: '',price: 0, id : 1};
+  newProduct: Product = {
+    name: '', price: 0, id: 1,
+    imageUrl: new File([], '', { type: '' })
+  };
 
-  editProduct: Product = { name: '',  imageUrl: '',price: 0, id : 0};
+  editProduct: Product = { name: '',  imageUrl: new File([], '', { type: '' }),price: 0, id : 0};
 
-  testProduct: Producttest = { name: '',  imageFile: <any> File,price: 0, id : 0};
+
 
   files: { [key: string]: File; } ={"test":this.file};
   addProduct(product:Product) {
     this.products$ = this.managerService.addProducts(product);
-    this.upload(product.name);
   }
 
-  editProductForm(product: {  name: string; imageUrl: string; price: number; id: number; }) {
+  editProductForm(product: {  name: string; imageUrl: File; price: number; id: number; }) {
     this.editProduct = { ...product };
   }
 
@@ -65,18 +63,23 @@ export class ManagerComponent implements OnInit{
 
   public getProducts(){
     this.products$ = this.managerService.getProducts();
+    // this.products$.subscribe(
+    //   products => {
+    //     products.forEach(product => {
 
+    //     })
+    //   }
+    // )
   }
 
   public getImage(name: string){
     this.managerService.getImage(name).subscribe(image =>{
       this.currimageUrl = this.domSanitizer.bypassSecurityTrustUrl(image);
-      this.files[name] =this.currimageUrl
       console.log(this.currimageUrl);
 
        let reader = new FileReader();
        reader.addEventListener("load", () => {
-        this.imageBlobUrl = reader.result as string;
+        this.imageBlobUrl = reader.result;
       }, false);
 
       if (image) {
@@ -87,7 +90,9 @@ export class ManagerComponent implements OnInit{
       return this.imageBlobUrl;
   }
   getImages(){
-
+    this.managerService.getImages().subscribe((data) => {
+      this.images = data.images;
+    });
   }
   upload(name:string){
     this.loading = !this.loading;
@@ -112,18 +117,33 @@ export class ManagerComponent implements OnInit{
 			return;
 		}
     var reader = new FileReader();
-    this.file = event.target.files[0];		reader.readAsDataURL(event.target.files[0]);
+    this.file = event.target.files[0];
+    this.newProduct.imageUrl = event.target.files[0];
+    reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
 			this.msg = "";
 			this.url = reader.result;
+      this.newProduct.imageUrl = this.url;
+		}
+}
+getUrl(file:File){
+  var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+			this.msg = "";
+			return reader.result;
 		}
 }
 
 
 
   ngOnInit(): void {
-    this.getImage("Tim");
+    this.url="./assets/BildVorschau.png"
     this.getProducts();
 
   }
 }
+function express() {
+  throw new Error('Function not implemented.');
+}
+
