@@ -1,13 +1,31 @@
-<body>
-<h1>{{title}}</h1>
-<div class = "row">
-  <div class="products" *ngFor="let product of products$ | async">
-    <img [src]="product.imageUrl" class="card-img-top" alt="...">
-    <div class ="card-body">
-      <h3 class="card-title">{{product.name}}</h3>
-      <p class="card-text">{{product.price}}</p>
+<html>
+  <head>
+    <title>
+    Product Page
+    </title>
+  </head>
+  <body>
+    <header>
+      <h1 class="title" >
+        <img class="product-logo" [src]="logo" alt="Product Logo" aligne = "left" width="10%" height="12%" >
+        {{title}}</h1>
+    </header>
+  <main>
+<!-- Add Product Form -->
+  <div class="product-container">
+  <div class="product-row">
+      <div class="product-card" *ngFor="let product of products$ | async">
+        <div class="product-card__image">
+        <img [src]="product.imageUrl" alt="{{ product.name }}" class="card-img-top" width="20%" height="22%">
+        </div>
+        <div class="product-card__details">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price | currency }}</p>
+      </div>
+      </div>
     </div>
   </div>
-</div>
 
-</body>
+  </main>
+  </body>
+</html>

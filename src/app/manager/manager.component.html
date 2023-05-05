@@ -1,5 +1,17 @@
 <!-- manager.component.html -->
-<h1>Manager Page</h1>
+<html>
+<head>
+  <title>Manager Page</title>
+</head>
+<body>
+  <header>
+    <h1 class="title">
+      <img class="product-logo" [src]="logo" alt="Product Logo" aligne = "left" width="10%" height="12%" >
+      {{title}}</h1>
+  </header>
+  <main>
+
+
 
 <!-- Add Product Form -->
 <h2>Add Product</h2>
@@ -50,15 +62,18 @@
 </form>
 <!-- Product List -->
 <h2>Product List</h2>
-<table>
-    <div class="products" *ngFor="let product of products$ | async">
+      <table>
+          <div class="products" *ngFor="let product of products$ | async">
 
-      <div class ="card-body">
-        <h3 class="card-title">{{product.name}}</h3>
-        <img [src]="product.imageUrl" class="card-img-top" alt="..." width="20%" height="22%">
-        <p class="card-text">{{product.price}}</p>
-        <button (click)="editProductForm(product)">Edit</button>
-        <button (click)="deleteProduct(product.id)">Delete</button>
-      </div>
-    </div>
-</table>
+            <div class ="card-body">
+              <h3 class="card-title">{{product.name}}</h3>
+              <img [src]="product.imageUrl" class="card-img-top" alt="..." width="20%" height="22%">
+              <p class="card-text">{{product.price}}</p>
+              <button (click)="editProductForm(product)">Edit</button>
+              <button (click)="deleteProduct(product.id)">Delete</button>
+            </div>
+          </div>
+      </table>
+    </main>
+  </body>
+</html>

@@ -15,7 +15,8 @@ const httpOptions = {
 export class ProductsService {
 
   constructor(private httpClient: HttpClient,private managerService: ManagerService) { };
-
+  title = this.managerService.title;
+  logo = this.managerService.logo;
   getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }

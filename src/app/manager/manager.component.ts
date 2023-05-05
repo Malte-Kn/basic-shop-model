@@ -8,6 +8,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 
+
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -17,12 +18,12 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export class ManagerComponent implements OnInit{
   url:any;
+  logo:any;
   msg = "";
   sanitizer: any;
   fileEvent(e:any){
     this.url = e.target.files[0];
   }
-
   shortLink: string = "";
   loading: boolean = false; // Flag variable
   file: File = null as any; // Variable to store file
@@ -43,7 +44,7 @@ export class ManagerComponent implements OnInit{
   editProduct: Product = { name: '',  imageUrl: new File([], '', { type: '' }),price: 0, id : 0};
 
 
-
+  title = this.managerService.title;
   files: { [key: string]: File; } ={"test":this.file};
   addProduct(product:Product) {
     this.products$ = this.managerService.addProducts(product);
@@ -135,10 +136,14 @@ getUrl(file:File){
 		}
 }
 
+public getTitle(){
+  return this.title;
+}
 
 
   ngOnInit(): void {
     this.url="./assets/BildVorschau.png"
+    this.logo= this.managerService.logo;
     this.getProducts();
 
   }
@@ -146,4 +151,5 @@ getUrl(file:File){
 function express() {
   throw new Error('Function not implemented.');
 }
+
 
