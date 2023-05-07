@@ -11,8 +11,9 @@ export class ManagerService {
 
 
   constructor(private httpClient: HttpClient) { };
-  title = "Euro Kiosk"
-  logo = "./assets/Europe.jpg"
+  title = "Euro Kiosk";
+  logo = "./assets/Europe.jpg";
+  kategorien = ["Tabak", "Trinken", "Suesses", "Nahrungsmittel", "Anderes"];
   getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }

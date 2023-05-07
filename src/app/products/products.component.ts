@@ -13,6 +13,7 @@ import { ManagerComponent } from '../manager/manager.component';
 export class ProductsComponent implements OnInit {
   title: string = '';
   logo: string = '';
+  kategorien: string[]= [];
   subscription = new Subscription();
   public products$: Observable<any> | undefined;
   constructor(private productsService: ProductsService) { }
@@ -23,10 +24,13 @@ export class ProductsComponent implements OnInit {
 public getProducts(){
  this.products$ = this.productsService.getProducts();
 }
+changeKat(kategorie: string){
 
+}
   ngOnInit(): void{
     this.getProducts();
     this.title = this.productsService.title;
     this.logo= this.productsService.logo;
+    this.kategorien = this.productsService.kategorien;
   }
 }

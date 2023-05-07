@@ -8,10 +8,11 @@ header {
   align-items: center;
   align-self: center;
   display: inline-block;
-  border-radius: 2%;
+  border-radius: 1%;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   width: 99%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
+
 }
 .header-container {
   display: flex;
@@ -126,4 +127,80 @@ body {
   font-size: 24px;
   font-family: cursive;
   margin: 0;
+}
+nav {
+  background: linear-gradient(to right,#10025f, #13547a,#40c7f0);
+  background-color: #10025f;
+  color:#d2e3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  margin: 0 10px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+.open-sign {
+  color: #d10000;
+  font-weight: bold;
+  text-shadow: #d10000;
+  position: absolute;
+  left: 0;
+  margin-left: 12%; /* add some margin to separate the open sign from the text */
+  font-size: 26px;
+  animation: blink 5s infinite; /* use the blink animation for the sign */
+}
+.open-sign::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(248, 0, 0, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.dot{
+  font-size: 5vw;
+  vertical-align: middle;
+  text-shadow: #d10000;
+}
+.dot::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(248, 0, 0, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }

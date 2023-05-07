@@ -12,6 +12,15 @@
         <p class="slogan">Bester Kiosk in Stadt</p>
       </div>
     </header>
+    <nav>
+      <div class="open-sign"><span class="dot">·</span>Open</div>
+      <ul>
+        <!-- Loop through the Kategorien array and create a button for each category -->
+        <li *ngFor="let kategorie of kategorien">
+          <button (click)="changeKat(kategorie)">{{kategorie}}</button>
+        </li>
+      </ul>
+    </nav>
   <main>
 <!-- Add Product Form -->
   <div class="product-container">
