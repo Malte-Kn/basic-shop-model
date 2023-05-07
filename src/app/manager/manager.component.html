@@ -1,13 +1,17 @@
 <!-- manager.component.html -->
-<html>
-<head>
-  <title>Manager Page</title>
-</head>
+<html justifiy-content = "center">
+
 <body>
   <header>
-    <h1 class="title">
+
+    <h1 class="title" >
       <img class="product-logo" [src]="logo" alt="Product Logo" aligne = "left" width="10%" height="12%" >
-      {{title}}</h1>
+      {{title}}
+    </h1>
+      <div class="header-container">
+
+      <p class="slogan">Bester Kiosk in Stadt</p>
+    </div>
   </header>
   <main>
 
@@ -62,18 +66,26 @@
 </form>
 <!-- Product List -->
 <h2>Product List</h2>
-      <table>
-          <div class="products" *ngFor="let product of products$ | async">
+  <div class="product-container-manager">
+    <div class="product-row-manager">
+       <div class="products" *ngFor="let product of products$ | async">
 
-            <div class ="card-body">
-              <h3 class="card-title">{{product.name}}</h3>
-              <img [src]="product.imageUrl" class="card-img-top" alt="..." width="20%" height="22%">
-              <p class="card-text">{{product.price}}</p>
-              <button (click)="editProductForm(product)">Edit</button>
-              <button (click)="deleteProduct(product.id)">Delete</button>
-            </div>
-          </div>
-      </table>
+              <div class ="card-body" width = "22%" objectfit ="cover">
+
+                <div class="product-card__image">
+                <img [src]="product.imageUrl" class="card-img-top" alt="..." width="20%" height="25%">
+                </div>
+                <div class="product-card__details">
+                  <h3 class="card-title">{{product.name}}</h3>
+                <p class="card-text">{{product.price | currency }}</p>
+
+                <button (click)="editProductForm(product)">Edit</button>
+                <button (click)="deleteProduct(product.id)">Delete</button>
+              </div>
+              </div>
+       </div>
+      </div>
+    </div>
     </main>
   </body>
 </html>
