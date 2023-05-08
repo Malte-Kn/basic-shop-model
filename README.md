@@ -3,10 +3,15 @@
 This repository contains a basic framework to present products of any shop.
 
 
-##Using this repository
+## Using this repository
+
 This project was generated with Angular version 15.2.3.
 
 You can run this website locally run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+
+## Prerequisites
+The backend of this project is using nestjs a node.js framework more information @ https://nestjs.com/
+and is written in Typescript.
 
 ## Code scaffolding
 
