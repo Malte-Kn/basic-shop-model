@@ -68,7 +68,7 @@ body {
 
 
 .product-card {
-  flex-basis: calc(33% - 20px); /* Set the width of each product card to 33.33% minus 20px for margin */
+  flex-basis: calc(33% - 10vw); /* Set the width of each product card to 33.33% minus 20px for margin */
   margin: 2%;
   display: inline-block;
   width: 20%;
@@ -86,7 +86,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 30vmin;
   overflow: hidden;
 
 }
@@ -104,8 +104,9 @@ body {
 
 
 .product-card__details {
-  padding: 15px;
+  padding: 1vw;
   text-align: center;
+  font-size: 1.8vw;
 
 }
 
@@ -124,7 +125,7 @@ body {
 }
 
 .slogan {
-  font-size: 24px;
+  font-size: 2vw;
   font-family: cursive;
   margin: 0;
 }
@@ -135,6 +136,15 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.8vw;
+}
+.navbutton{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.8vw;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 ul {
@@ -143,19 +153,12 @@ ul {
 }
 
 li {
-  margin: 0 10px;
+  margin: 0 1vw;
 }
 
-button {
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
 
-button:hover {
+
+.button:hover {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
 }
@@ -166,7 +169,7 @@ button:hover {
   position: absolute;
   left: 0;
   margin-left: 12%; /* add some margin to separate the open sign from the text */
-  font-size: 26px;
+  font-size: 1.8vw;
   animation: blink 5s infinite; /* use the blink animation for the sign */
 }
 .open-sign::before {

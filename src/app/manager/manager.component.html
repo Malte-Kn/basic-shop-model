@@ -18,6 +18,7 @@
 
 
 <!-- Add Product Form -->
+<ul>
 <h2>Add Product</h2>
 <form (submit)="addProduct(newProduct)">
   <label>
@@ -64,28 +65,58 @@
   <br>
   <button type="submit">Update Product</button>
 </form>
+</ul>
+<h2>Öffnungszeiten</h2>
+<form (submit)="setopentimes(opentimes)">
+  <div>
+    <label for="monday">Monday:</label>
+    <input type="text" [(ngModel)]="opentimes[0]" name="monday_hours" placeholder="opentimes[0]">
+  </div>
+  <div>
+    <label for="tuesday">Tuesday:</label>
+    <input type="text" [(ngModel)]="opentimes[1]" name="tuesday_hours" placeholder="opentimes[1]">
+  </div>
+  <div>
+    <label for="wednesday">Wednesday:</label>
+    <input type="text" [(ngModel)]="opentimes[2]" name="wednesday_hours" placeholder="opentimes[2]">
+  </div>
+  <div>
+    <label for="thursday">Thursday:</label>
+    <input type="text" [(ngModel)]="opentimes[3]" name="thursday_hours" placeholder="opentimes[3]">
+  </div>
+  <div>
+    <label for="friday">Friday:</label>
+    <input type="text" [(ngModel)]="opentimes[4]" name="friday_hours" placeholder="opentimes[4]">
+  </div>
+  <div>
+    <label for="saturday">Saturday:</label>
+    <input type="text" [(ngModel)]="opentimes[5]" name="saturday_hours" placeholder="opentimes[5]">
+  </div>
+  <div>
+    <label for="sunday">Sunday:</label>
+    <input type="text" [(ngModel)]="opentimes[6]" name="sunday_hours" placeholder="opentimes[6]">
+  </div>
+  <button type="submit">Save</button>
+</form>
+
 <!-- Product List -->
 <h2>Product List</h2>
-  <div class="product-container-manager">
-    <div class="product-row-manager">
-       <div class="products" *ngFor="let product of products$ | async">
+<div class="product-container">
 
-              <div class ="card-body" width = "22%" objectfit ="cover">
-
-                <div class="product-card__image">
-                <img [src]="product.imageUrl" class="card-img-top" alt="..." width="20%" height="25%">
-                </div>
-                <div class="product-card__details">
-                  <h3 class="card-title">{{product.name}}</h3>
-                <p class="card-text">{{product.price | currency }}</p>
-
-                <button (click)="editProductForm(product)">Edit</button>
-                <button (click)="deleteProduct(product.id)">Delete</button>
-              </div>
-              </div>
-       </div>
+  <div class="product-row">
+      <div class="product-card" *ngFor="let product of products$ | async">
+        <div class="product-card__image">
+        <img [src]="product.imageUrl" alt="{{ product.name }}" class="card-img-top" width="20%" height="22%">
+        </div>
+        <div class="product-card__details">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price | currency }}</p>
+        <button (click)="editProductForm(product)">Edit</button>
+        <button (click)="deleteProduct(product.id)">Delete</button>
+      </div>
       </div>
     </div>
+  </div>
     </main>
   </body>
 </html>

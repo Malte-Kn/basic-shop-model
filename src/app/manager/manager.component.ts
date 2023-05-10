@@ -21,6 +21,10 @@ export class ManagerComponent implements OnInit{
   logo:any;
   msg = "";
   sanitizer: any;
+  static pw: string | undefined;
+  opentimes: any[] = [];//"9am - 5pm", "9am - 5pm","9:00 - Do 1:00", "9:00 - 17:00", "8:00 - 17:00", "9:00 - 17:00","9:00 - 17:00"]
+  opentimes$: Observable<any> | undefined;
+  ManagerComponent: any;
   fileEvent(e:any){
     this.url = e.target.files[0];
   }
@@ -139,13 +143,22 @@ getUrl(file:File){
 public getTitle(){
   return this.title;
 }
-
-
+setopentimes(opentimes: string[]){
+  this.managerService.setOpentimes(opentimes);
+}
+getopentimes(){
+  //  this.managerService.getOpentimes().subscribe((data) => {
+  //   this.opentimes;
+  // });;
+  this.opentimes = this.managerService.opentimes;
+}
   ngOnInit(): void {
     this.url="./assets/BildVorschau.png"
     this.logo= this.managerService.logo;
     this.getProducts();
-
+    //this.ManagerComponent.pw = this.managerService.pw;
+    this.getopentimes();
+    console.log(this.opentimes);
   }
 }
 function express() {

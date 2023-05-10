@@ -15,9 +15,12 @@
     <nav>
       <div class="open-sign"><span class="dot">·</span>Open</div>
       <ul>
+      <li *ngFor="let day of opentimes">{{day}}</li>
+      </ul>
+      <ul>
         <!-- Loop through the Kategorien array and create a button for each category -->
         <li *ngFor="let kategorie of kategorien">
-          <button (click)="changeKat(kategorie)">{{kategorie}}</button>
+          <button class ="navbutton"(click)="changeKat(kategorie)">{{kategorie}}</button>
         </li>
       </ul>
     </nav>

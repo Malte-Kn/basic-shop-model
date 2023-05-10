@@ -1,29 +1,7 @@
 @import '../../styles.css';
 
-.product-scroll-container-manager {
-  display: flex;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  flex-wrap: wrap; /* Wrap the products to a new row when they reach the end of the container */
-  justify-content: space-between; /* Space the products evenly within the container */
-}
 
-
-
-.product-row-manager {
-  display: inline-block;
-  scroll-snap-type: x mandatory;
-}
-.products{
-  flex-basis: calc(20% - 20px); /* Set the width of each product card to 33.33% minus 20px for margin */
-  margin: 1%;
-  display: inline-block;
-  width: 10%;
-  height: 15%;
-  margin-right: 2%;
-  background-color: #f5efef;
-  border-radius: 2%;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-  scroll-snap-align: center;
+.button{
+  background-color: aqua;
+  color: #000;
 }

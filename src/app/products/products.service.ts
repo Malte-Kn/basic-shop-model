@@ -18,6 +18,7 @@ export class ProductsService {
   title = this.managerService.title;
   logo = this.managerService.logo;
   kategorien = this.managerService.kategorien;
+  opentimes = this.managerService.getOpentimes();
   getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }

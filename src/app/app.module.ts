@@ -27,7 +27,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     RouterModule.forRoot([
       {path: '', component: ProductsComponent},
       {path: 'manage', component: ManagerComponent},
-    ])
+
+    ],)
   ],
   providers: [],
   bootstrap: [AppComponent]

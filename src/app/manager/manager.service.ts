@@ -14,6 +14,8 @@ export class ManagerService {
   title = "Euro Kiosk";
   logo = "./assets/Europe.jpg";
   kategorien = ["Tabak", "Trinken", "Suesses", "Nahrungsmittel", "Anderes"];
+  pw = this.httpClient.get("http://localhost:3000/pw");
+  opentimes: any = this.getOpentimes();
   getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }
@@ -41,5 +43,11 @@ export class ManagerService {
 
     return this.httpClient.post("http://localhost:3000/products/upload",formData);
 
+  }
+  setOpentimes(opentimes:string []){
+    return this.httpClient.post("http://localhost:3000/products/open",opentimes);
+  }
+  getOpentimes(){
+    return this.httpClient.get<{opentimes: string[]}>("http://localhost:3000/products/open");
   }
 }

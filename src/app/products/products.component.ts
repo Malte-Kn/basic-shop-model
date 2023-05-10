@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   title: string = '';
   logo: string = '';
   kategorien: string[]= [];
+  opentimes : any;
   subscription = new Subscription();
   public products$: Observable<any> | undefined;
   constructor(private productsService: ProductsService) { }
@@ -32,5 +33,6 @@ changeKat(kategorie: string){
     this.title = this.productsService.title;
     this.logo= this.productsService.logo;
     this.kategorien = this.productsService.kategorien;
+    this.opentimes = this.productsService.opentimes
   }
 }
