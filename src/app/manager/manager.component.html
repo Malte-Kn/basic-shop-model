@@ -67,34 +67,34 @@
 </form>
 </ul>
 <h2>Öffnungszeiten</h2>
-<form (submit)="setopentimes(opentimes)">
+<form (submit)="setopentimes(opentimes)" >
   <div>
     <label for="monday">Monday:</label>
-    <input type="text" [(ngModel)]="opentimes[0]" name="monday_hours" placeholder="opentimes[0]">
+    <input type="text" [(ngModel)]="opentimes.monday" name="monday" placeholder="opentimes.monday">
   </div>
   <div>
     <label for="tuesday">Tuesday:</label>
-    <input type="text" [(ngModel)]="opentimes[1]" name="tuesday_hours" placeholder="opentimes[1]">
+    <input type="text" [(ngModel)]="opentimes.tuesday" name="tuesday" placeholder="opentimes.tuesday">
   </div>
   <div>
     <label for="wednesday">Wednesday:</label>
-    <input type="text" [(ngModel)]="opentimes[2]" name="wednesday_hours" placeholder="opentimes[2]">
+    <input type="text" [(ngModel)]="opentimes.wednesday" name="wednesday" placeholder="opentimes.wednesday">
   </div>
   <div>
     <label for="thursday">Thursday:</label>
-    <input type="text" [(ngModel)]="opentimes[3]" name="thursday_hours" placeholder="opentimes[3]">
+    <input type="text" [(ngModel)]="opentimes.thursday" name="thursday" placeholder="opentimes.thursday">
   </div>
   <div>
     <label for="friday">Friday:</label>
-    <input type="text" [(ngModel)]="opentimes[4]" name="friday_hours" placeholder="opentimes[4]">
+    <input type="text" [(ngModel)]="opentimes.friday" name="friday" placeholder="opentimes.friday">
   </div>
   <div>
     <label for="saturday">Saturday:</label>
-    <input type="text" [(ngModel)]="opentimes[5]" name="saturday_hours" placeholder="opentimes[5]">
+    <input type="text" [(ngModel)]="opentimes.saturday" name="saturday" placeholder="opentimes.saturday">
   </div>
   <div>
     <label for="sunday">Sunday:</label>
-    <input type="text" [(ngModel)]="opentimes[6]" name="sunday_hours" placeholder="opentimes[6]">
+    <input type="text" [(ngModel)]="opentimes.sunday" name="sunday" placeholder="opentimes.sunday">
   </div>
   <button type="submit">Save</button>
 </form>

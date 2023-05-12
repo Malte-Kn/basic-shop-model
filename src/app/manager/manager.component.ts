@@ -4,6 +4,7 @@ import { ProductsComponent } from '../products/products.component';
 import { Observable } from 'rxjs';
 import { ManagerService } from './manager.service';
 import { Product } from 'basic-shop-backend/src/products/products.service';
+import { Opentimes } from 'basic-shop-backend/src/products/products.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
@@ -22,7 +23,7 @@ export class ManagerComponent implements OnInit{
   msg = "";
   sanitizer: any;
   static pw: string | undefined;
-  opentimes: any[] = [];//"9am - 5pm", "9am - 5pm","9:00 - Do 1:00", "9:00 - 17:00", "8:00 - 17:00", "9:00 - 17:00","9:00 - 17:00"]
+  opentimes: Opentimes = {monday:"9am - 5pm",tuesday:"9am - 5pm",wednesday:"9:00 - Do 1:00",thursday: "9:00 - 17:00",friday: "8:00 - 17:00",saturday: "9:00 - 17:00", sunday:"9:00 - 17:00"};
   opentimes$: Observable<any> | undefined;
   ManagerComponent: any;
   fileEvent(e:any){
@@ -68,6 +69,7 @@ export class ManagerComponent implements OnInit{
 
   public getProducts(){
     this.products$ = this.managerService.getProducts();
+    console.log(this.products$);
     // this.products$.subscribe(
     //   products => {
     //     products.forEach(product => {
@@ -143,14 +145,17 @@ getUrl(file:File){
 public getTitle(){
   return this.title;
 }
-setopentimes(opentimes: string[]){
+setopentimes(opentimes: Opentimes){
+  console.log(opentimes);
   this.managerService.setOpentimes(opentimes);
 }
-getopentimes(){
-  //  this.managerService.getOpentimes().subscribe((data) => {
-  //   this.opentimes;
-  // });;
-  this.opentimes = this.managerService.opentimes;
+public getopentimes(){
+    this.managerService.getOpentimes().subscribe((data) => {
+     this.opentimes;
+   });
+   console.log(this.opentimes);
+  this.opentimes$ = this.managerService.getOpentimes();
+  console.log(this.opentimes$);
 }
   ngOnInit(): void {
     this.url="./assets/BildVorschau.png"
@@ -158,7 +163,8 @@ getopentimes(){
     this.getProducts();
     //this.ManagerComponent.pw = this.managerService.pw;
     this.getopentimes();
-    console.log(this.opentimes);
+
+
   }
 }
 function express() {

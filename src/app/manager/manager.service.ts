@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from 'basic-shop-backend/src/products/products.service';
-
+import { Opentimes } from 'basic-shop-backend/src/products/products.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -44,10 +44,11 @@ export class ManagerService {
     return this.httpClient.post("http://localhost:3000/products/upload",formData);
 
   }
-  setOpentimes(opentimes:string []){
+  setOpentimes(opentimes:Opentimes){
+    console.log(opentimes);
     return this.httpClient.post("http://localhost:3000/products/open",opentimes);
   }
   getOpentimes(){
-    return this.httpClient.get<{opentimes: string[]}>("http://localhost:3000/products/open");
+    return this.httpClient.get("http://localhost:3000/products/open");//<{opentimes: string[]}>
   }
 }
