@@ -37,7 +37,9 @@
             (change)="onChange($event)">
             <div class ="card-body" >
               <h3 class="card-title">{{newProduct.name}}</h3>
-              <img [src]="url" alt="" width="20%" height="22%">
+              <div class="form__image">
+                <img [src]="url" class="card-img-top" >
+              </div>
               <p class="card-text">{{newProduct.price}}</p>
 
             </div>
@@ -59,8 +61,17 @@
   </label>
   <br>
   <label>
-    Image URL:
-    <input type="url" [(ngModel)]="editProduct.imageUrl" name="imageUrl" required>
+    Image:
+    <input class="form-control" type="file" width="30%" height="52%"
+            (change)="onChangeedit($event)">
+            <div class ="card-body" >
+              <h3 class="card-title">{{editProduct.name}}</h3>
+              <div class="form__image">
+              <img [src]="editurl" class="card-img-top" >
+            </div>
+              <p class="card-text">{{editProduct.price}}</p>
+
+            </div>
   </label>
   <br>
   <button type="submit">Update Product</button>

@@ -5,3 +5,13 @@
   background-color: aqua;
   color: #000;
 }
+
+.form__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32vmin;
+  width: 30vmin;
+  overflow: hidden;
+
+}

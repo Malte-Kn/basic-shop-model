@@ -18,7 +18,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 export class ManagerComponent implements OnInit{
-  url:any;
+  url:any="./assets/BildVorschau.png";
+  editurl:any ="./assets/BildVorschau.png";
   logo:any;
   msg = "";
   sanitizer: any;
@@ -42,11 +43,11 @@ export class ManagerComponent implements OnInit{
   product: Product | undefined;
   constructor(private readonly domSanitizer: DomSanitizer, private managerService: ManagerService) { }
   newProduct: Product = {
-    name: '', price: 0, id: 1,
+    name: 'Name', price: 999, id: 1,
     imageUrl: new File([], '', { type: '' })
   };
 
-  editProduct: Product = { name: '',  imageUrl: new File([], '', { type: '' }),price: 0, id : 0};
+  editProduct: Product = { name: 'Name',  imageUrl: new File([], '', { type: '' }),price: 999, id : 0};
 
 
   title = this.managerService.title;
@@ -57,6 +58,7 @@ export class ManagerComponent implements OnInit{
 
   editProductForm(product: {  name: string; imageUrl: File; price: number; id: number; }) {
     this.editProduct = { ...product };
+    this.editurl = product.imageUrl;
   }
 
   edit_Product(product:Product) {
@@ -132,6 +134,27 @@ export class ManagerComponent implements OnInit{
 			this.url = reader.result;
       this.newProduct.imageUrl = this.url;
 		}
+
+}
+onChangeedit(event: any) {
+  if(!event.target.files[0] || event.target.files[0].length == 0) {
+    this.msg = 'You must select an image';
+    return;
+  }
+  var mimeType = event.target.files[0].type;
+  if (mimeType.match(/image\/*/) == null) {
+    this.msg = "Only images are supported";
+    return;
+  }
+  var reader = new FileReader();
+  this.file = event.target.files[0];
+  this.newProduct.imageUrl = event.target.files[0];
+  reader.readAsDataURL(event.target.files[0]);
+  reader.onload = (_event) => {
+    this.msg = "";
+    this.editurl = reader.result;
+    this.editProduct.imageUrl= this.editurl;
+  }
 }
 getUrl(file:File){
   var reader = new FileReader();
@@ -158,7 +181,6 @@ public getopentimes(){
   console.log(this.opentimes$);
 }
   ngOnInit(): void {
-    this.url="./assets/BildVorschau.png"
     this.logo= this.managerService.logo;
     this.getProducts();
     //this.ManagerComponent.pw = this.managerService.pw;
