@@ -51,6 +51,7 @@ export class ManagerComponent implements OnInit{
 
 
   title = this.managerService.title;
+  info = this.managerService.info;
   files: { [key: string]: File; } ={"test":this.file};
   addProduct(product:Product) {
     this.products$ = this.managerService.addProducts(product);
@@ -71,7 +72,7 @@ export class ManagerComponent implements OnInit{
 
   public getProducts(){
     this.products$ = this.managerService.getProducts();
-    console.log(this.products$);
+
     // this.products$.subscribe(
     //   products => {
     //     products.forEach(product => {
@@ -84,7 +85,7 @@ export class ManagerComponent implements OnInit{
   public getImage(name: string){
     this.managerService.getImage(name).subscribe(image =>{
       this.currimageUrl = this.domSanitizer.bypassSecurityTrustUrl(image);
-      console.log(this.currimageUrl);
+
 
        let reader = new FileReader();
        reader.addEventListener("load", () => {
@@ -179,6 +180,10 @@ public getopentimes(){
    console.log(this.opentimes);
   this.opentimes$ = this.managerService.getOpentimes();
   console.log(this.opentimes$);
+}
+
+changeInfo(title:string, info:string){
+  this.managerService.SetInfo(title, info);
 }
   ngOnInit(): void {
     this.logo= this.managerService.logo;

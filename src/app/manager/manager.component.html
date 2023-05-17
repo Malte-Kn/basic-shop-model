@@ -10,13 +10,26 @@
     </h1>
       <div class="header-container">
 
-      <p class="slogan">Bester Kiosk in Stadt</p>
+      <p class="slogan">{{info}}</p>
     </div>
   </header>
   <main>
 
 
 
+      <h2>Change Titel</h2>
+      <form (submit)="changeInfo(title,info)">
+        <label>
+          Name:
+          <input type="text" [(ngModel)]="title" name="Title" required>
+        </label>
+        <br>
+        <label>
+          Price:
+          <input type="text" [(ngModel)]="info" name="Info" required>
+        </label>
+        <button type="submit">Update Info</button>
+      </form>
 <!-- Add Product Form -->
 <ul>
 <h2>Add Product</h2>
@@ -78,34 +91,34 @@
 </form>
 </ul>
 <h2>Öffnungszeiten</h2>
-<form (submit)="setopentimes(opentimes)" >
-  <div>
+<form (submit)="setopentimes(opentimes)" *ngFor="let opentime of opentimes$ | async">
+  <div >
     <label for="monday">Monday:</label>
-    <input type="text" [(ngModel)]="opentimes.monday" name="monday" placeholder="opentimes.monday">
+    <input type="text" [(ngModel)]="opentime.monday" name="monday" placeholder={{opentime.monday}}>
   </div>
   <div>
     <label for="tuesday">Tuesday:</label>
-    <input type="text" [(ngModel)]="opentimes.tuesday" name="tuesday" placeholder="opentimes.tuesday">
+    <input type="text" [(ngModel)]="opentime.tuesday" name="tuesday" placeholder="opentime.tuesday">
   </div>
   <div>
     <label for="wednesday">Wednesday:</label>
-    <input type="text" [(ngModel)]="opentimes.wednesday" name="wednesday" placeholder="opentimes.wednesday">
+    <input type="text" [(ngModel)]="opentime.wednesday" name="wednesday" placeholder="opentime.wednesday">
   </div>
   <div>
     <label for="thursday">Thursday:</label>
-    <input type="text" [(ngModel)]="opentimes.thursday" name="thursday" placeholder="opentimes.thursday">
+    <input type="text" [(ngModel)]="opentime.thursday" name="thursday" placeholder="opentime.thursday">
   </div>
   <div>
     <label for="friday">Friday:</label>
-    <input type="text" [(ngModel)]="opentimes.friday" name="friday" placeholder="opentimes.friday">
+    <input type="text" [(ngModel)]="opentime.friday" name="friday" placeholder="opentime.friday">
   </div>
   <div>
     <label for="saturday">Saturday:</label>
-    <input type="text" [(ngModel)]="opentimes.saturday" name="saturday" placeholder="opentimes.saturday">
+    <input type="text" [(ngModel)]="opentime.saturday" name="saturday" placeholder="opentimes.saturday">
   </div>
   <div>
     <label for="sunday">Sunday:</label>
-    <input type="text" [(ngModel)]="opentimes.sunday" name="sunday" placeholder="opentimes.sunday">
+    <input type="text" [(ngModel)]="opentime.sunday" name="sunday" placeholder="opentime.sunday">
   </div>
   <button type="submit">Save</button>
 </form>
@@ -128,6 +141,6 @@
       </div>
     </div>
   </div>
-    </main>
+  </main>
   </body>
 </html>

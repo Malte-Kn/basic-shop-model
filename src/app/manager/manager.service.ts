@@ -12,6 +12,7 @@ export class ManagerService {
 
   constructor(private httpClient: HttpClient) { };
   title = "Euro Kiosk";
+  info = "Bester Kiosk in Stadt"
   logo = "./assets/Europe.jpg";
   kategorien = ["Tabak", "Trinken", "Suesses", "Nahrungsmittel", "Anderes"];
   pw = this.httpClient.get("http://localhost:3000/pw");
@@ -50,5 +51,9 @@ export class ManagerService {
   }
   getOpentimes(){
     return this.httpClient.get("http://localhost:3000/products/open");//<{opentimes: string[]}>
+  }
+  SetInfo(title:string, info:string){
+    this.title = title;
+    this.info = info;
   }
 }
