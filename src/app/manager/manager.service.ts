@@ -11,12 +11,12 @@ export class ManagerService {
 
 
   constructor(private httpClient: HttpClient) { };
-  title = "Euro Kiosk";
+  title: string = "";
   info = "Bester Kiosk in Stadt"
   logo = "./assets/Europe.jpg";
   kategorien = ["Tabak", "Trinken", "Suesses", "Nahrungsmittel", "Anderes"];
   pw = this.httpClient.get("http://localhost:3000/pw");
-  opentimes: any = this.getOpentimes();
+  opentimes: any ;
   getProducts(){
     return this.httpClient.get("http://localhost:3000/products");
   }
@@ -50,10 +50,39 @@ export class ManagerService {
     return this.httpClient.post("http://localhost:3000/products/open",opentimes);
   }
   getOpentimes(){
-    return this.httpClient.get("http://localhost:3000/products/open");//<{opentimes: string[]}>
+    this.httpClient.get<any>("http://localhost:3000/products/open").subscribe(
+      (response) => {
+        console.log(response);
+        this.opentimes =  response;
+      },
+      (error) => {
+        // Handle any errors here
+        console.error(error);
+      }
+    );
+    //return this.httpClient.get("http://localhost:3000/products/open");//<{opentimes: string[]}>
+    return this.opentimes;
   }
   SetInfo(title:string, info:string){
-    this.title = title;
+    //this.title = title;
     this.info = info;
+  }
+  getTitle(){
+    this.httpClient.get<any>("http://localhost:3000/products/title").subscribe(
+      (response) => {
+        console.log(response);
+        this.title = response.title;
+        console.log(this.title);
+        return this.title;
+
+      },
+      (error) => {
+        // Handle any errors here
+        console.error(error);
+      }
+    );
+    console.log(this.title +"2");
+    return this.title;
+
   }
 }

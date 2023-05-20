@@ -50,7 +50,7 @@ export class ManagerComponent implements OnInit{
   editProduct: Product = { name: 'Name',  imageUrl: new File([], '', { type: '' }),price: 999, id : 0};
 
 
-  title = this.managerService.title;
+  title = "";
   info = this.managerService.info;
   files: { [key: string]: File; } ={"test":this.file};
   addProduct(product:Product) {
@@ -156,6 +156,7 @@ onChangeedit(event: any) {
     this.editurl = reader.result;
     this.editProduct.imageUrl= this.editurl;
   }
+  console.log(this.title);
 }
 getUrl(file:File){
   var reader = new FileReader();
@@ -174,23 +175,50 @@ setopentimes(opentimes: Opentimes){
   this.managerService.setOpentimes(opentimes);
 }
 public getopentimes(){
-    this.managerService.getOpentimes().subscribe((data) => {
-     this.opentimes;
-   });
+  //   this.managerService.getOpentimes().subscribe((data) => {
+  //    this.opentimes;
+  //  });
    console.log(this.opentimes);
-  this.opentimes$ = this.managerService.getOpentimes();
-  console.log(this.opentimes$);
+  this.opentimes = this.managerService.opentimes;
+  console.log(this.opentimes);
 }
 
 changeInfo(title:string, info:string){
   this.managerService.SetInfo(title, info);
 }
+ cropImage() {
+  // Get the uploaded file
+  const fileInput = document.getElementById('image-upload') as HTMLInputElement;
+  const file = fileInput.files?.[0];
+
+  // Check if a file is selected
+  if (file) {
+    // Create a FileReader object
+    const reader = new FileReader();
+
+    // Set the onload event handler
+    reader.onload = function(e) {
+      // Set the uploaded image as the background of the preview div
+      const imagePreview = document.getElementById('image-preview');
+      if (imagePreview) {
+        imagePreview.style.backgroundImage = `url(${e.target?.result})`;
+      }
+    }
+
+    // Read the uploaded file as a data URL
+    reader.readAsDataURL(file);
+  }
+}
+
+
   ngOnInit(): void {
     this.logo= this.managerService.logo;
     this.getProducts();
     //this.ManagerComponent.pw = this.managerService.pw;
-    this.getopentimes();
-
+    //this.getopentimes();
+    this.managerService.getTitle();
+    this.title = this.managerService.getTitle();
+    console.log(this.title);
 
   }
 }
