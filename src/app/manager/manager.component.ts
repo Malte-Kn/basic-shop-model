@@ -183,8 +183,11 @@ public getopentimes(){
   console.log(this.opentimes);
 }
 
-changeInfo(title:string, info:string){
-  this.managerService.SetInfo(title, info);
+changeInfo(titl:string, info:string){
+  this.managerService.setInfo({title: titl});
+  this.managerService.getTitle().subscribe((response) =>{
+    this.title = response.title;
+  });
 }
  cropImage() {
   // Get the uploaded file
@@ -211,14 +214,16 @@ changeInfo(title:string, info:string){
 }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.logo= this.managerService.logo;
     this.getProducts();
     //this.ManagerComponent.pw = this.managerService.pw;
-    //this.getopentimes();
-    this.managerService.getTitle();
-    this.title = this.managerService.getTitle();
-    console.log(this.title);
+    // this.managerService.getOpentimes().subscribe((res: Opentimes[]) =>{
+    //   this.opentimes = res;
+    // });
+    this.managerService.getTitle().subscribe((response) =>{
+      this.title = response.title;
+    });
 
   }
 }

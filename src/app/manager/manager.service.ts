@@ -46,43 +46,54 @@ export class ManagerService {
 
   }
   setOpentimes(opentimes:Opentimes){
-    console.log(opentimes);
+    //console.log(opentimes);
     return this.httpClient.post("http://localhost:3000/products/open",opentimes);
   }
   getOpentimes(){
-    this.httpClient.get<any>("http://localhost:3000/products/open").subscribe(
-      (response) => {
-        console.log(response);
-        this.opentimes =  response;
-      },
-      (error) => {
-        // Handle any errors here
-        console.error(error);
-      }
-    );
+    return this.httpClient.get<any>("http://localhost:3000/products/open");
+    // .subscribe(
+    //   (response) => {
+    //     console.log(response);
+    //     this.opentimes =  response;
+    //   },
+    //   (error) => {
+    //     // Handle any errors here
+    //     console.error(error);
+    //   }
+    // );
     //return this.httpClient.get("http://localhost:3000/products/open");//<{opentimes: string[]}>
     return this.opentimes;
   }
-  SetInfo(title:string, info:string){
-    //this.title = title;
-    this.info = info;
-  }
-  getTitle(){
-    this.httpClient.get<any>("http://localhost:3000/products/title").subscribe(
+  setInfo(title:{title:string}){
+    console.log(title)
+    return this.httpClient.post("http://localhost:3000/products/title", {title}).subscribe(
       (response) => {
-        console.log(response);
-        this.title = response.title;
-        console.log(this.title);
-        return this.title;
-
+        console.log('Set info successful:', response);
+        // Handle the response data
       },
       (error) => {
-        // Handle any errors here
-        console.error(error);
+        console.error('Error setting info:', error);
+        // Handle the error
       }
     );
-    console.log(this.title +"2");
-    return this.title;
-
   }
+  getTitle(){
+    return this.httpClient.get<any>("http://localhost:3000/products/title")
+  //   .subscribe(
+  //     (response) => {
+  //       console.log(response);
+  //       this.title = response[0].title;
+  //       console.log(this.title);
+  //       return this.title;
+
+  //     },
+  //     (error) => {
+  //       // Handle any errors here
+  //       console.error(error);
+  //     }
+  //   );
+  //   console.log(this.title +"2");
+  //   return this.title;
+
+   }
 }

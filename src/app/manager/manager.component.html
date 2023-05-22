@@ -98,7 +98,7 @@
 <form (submit)="setopentimes(opentimes)" >
   <div >
     <label for="monday">Monday:</label>
-    <input type="text" [(ngModel)]="opentimes.monday" name="monday" placeholder="opentime.monday">
+    <input type="text" [(ngModel)]="opentimes.monday" name="monday" placeholder="opentimes[0].monday">
   </div>
   <div>
     <label for="tuesday">Tuesday:</label>
@@ -122,7 +122,7 @@
   </div>
   <div>
     <label for="sunday">Sunday:</label>
-    <input type="text" [(ngModel)]="opentimes.sunday" name="sunday" placeholder="opentime.sunday">
+    <input type="text" [(ngModel)]="opentimes.sunday" name="sunday" placeholder="opentimes[0].sunday">
   </div>
   <button type="submit">Save</button>
 </form>
