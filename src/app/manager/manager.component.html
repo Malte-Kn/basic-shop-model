@@ -31,9 +31,10 @@
         <button type="submit">Update Info</button>
       </form>
 <!-- Add Product Form -->
-<ul>
-<h2>Add Product</h2>
+<ul >
+
 <form (submit)="addProduct(newProduct)">
+  <h2>Add Product</h2>
   <label>
     Name:
     <input type="text" [(ngModel)]="newProduct.name" name="name" required>
@@ -61,41 +62,42 @@
   <button type="submit">Add Product</button>
 </form>
 <!-- Edit Product Form -->
-<h2>Edit Product</h2>
-<form (submit)="edit_Product(editProduct)">
-  <label>
-    Name:
-    <input type="text" [(ngModel)]="editProduct.name" name="name" required>
-  </label>
-  <br>
-  <label>
-    Price:
-    <input type="number" [(ngModel)]="editProduct.price" name="price" required>
-  </label>
-  <br>
-  <label>
-    Image:
-    <input class="form-control" type="file" width="30%" height="52%"
-            (change)="onChangeedit($event)">
-            <div class ="card-body" >
-              <h3 class="card-title">{{editProduct.name}}</h3>
-              <div class="form__image">
-              <img [src]="editurl" class="card-img-top" >
-            </div>
-              <p class="card-text">{{editProduct.price}}</p>
 
-            </div>
-  </label>
-  <br>
-  <!-- <input type="file" id="image-upload" >
-<div id="image-preview"></div>
-<button onclick="cropImage()">Crop</button>
-<br> -->
-  <button type="submit">Update Product</button>
-</form>
-</ul>
-<h2>Öffnungszeiten</h2>
+  <form (submit)="edit_Product(editProduct)">
+    <h2>Edit Product</h2>
+    <label>
+      Name:
+      <input type="text" [(ngModel)]="editProduct.name" name="name" required>
+    </label>
+    <br>
+    <label>
+      Price:
+      <input type="number" [(ngModel)]="editProduct.price" name="price" required>
+    </label>
+    <br>
+    <label>
+      Image:
+      <input class="form-control" type="file" width="30%" height="52%"
+              (change)="onChangeedit($event)">
+              <div class ="card-body" >
+                <h3 class="card-title">{{editProduct.name}}</h3>
+                <div class="form__image">
+                <img [src]="editurl" class="card-img-top" >
+              </div>
+                <p class="card-text">{{editProduct.price}}</p>
+
+              </div>
+    </label>
+    <br>
+    <!-- <input type="file" id="image-upload" >
+  <div id="image-preview"></div>
+  <button onclick="cropImage()">Crop</button>
+  <br> -->
+    <button type="submit">Update Product</button>
+  </form>
+
 <form (submit)="setopentimes(opentimes)">
+  <h2>Öffnungszeiten</h2>
   <div >
     <label for="monday">Monday:</label>
     <input type="text" [(ngModel)]="opentimes.monday" name="monday">
@@ -126,7 +128,7 @@
   </div>
   <button type="submit">Save</button>
 </form>
-
+</ul>
 <!-- Product List -->
 <h2>Product List</h2>
 <div class="product-container">

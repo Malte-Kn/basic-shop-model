@@ -1,4 +1,4 @@
-<html justifiy-content = "center">
+<html >
 
   <body>
     <header>
@@ -7,16 +7,27 @@
         <img class="product-logo" [src]="logo" alt="Product Logo" aligne = "left" width="10%" height="12%" >
         {{title}}
       </h1>
+      <div class="open-sign"><span class="dot">·</span>Open</div>
         <div class="header-container">
 
         <p class="slogan">Bester Kiosk in Stadt</p>
       </div>
     </header>
     <nav>
-      <div class="open-sign"><span class="dot">·</span>Open</div>
       <ul>
-      <li *ngFor="let day of opentimes">{{day}}</li>
-      </ul>
+        <li class = "opentimeslist">
+          <div class = "opentimes">
+            <p class = "open">Mo: {{ opentimes.monday }}</p>
+            <p class = "open">Di: {{ opentimes.tuesday }}</p>
+            <p class = "open">Mi: {{ opentimes.wednesday }}</p>
+            <p class = "open">Do: {{ opentimes.thursday }}</p>
+            <p class = "open">Fr: {{ opentimes.friday }}</p>
+            <p class = "open">Sa: {{ opentimes.saturday }}</p>
+            <p class = "open">So: {{ opentimes.sunday }}</p>
+          </div>
+
+      </li>
+    </ul>
       <ul>
         <!-- Loop through the Kategorien array and create a button for each category -->
         <li *ngFor="let kategorie of kategorien">

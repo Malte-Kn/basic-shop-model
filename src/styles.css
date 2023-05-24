@@ -4,9 +4,9 @@ header {
   background-color: #10025f;
   color:#d2e3f5;
   padding: 22px;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
+
+
+
   display: inline-block;
   border-radius: 1%;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
@@ -17,7 +17,7 @@ header {
 .header-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   justify-content: center;
   text-align: center;
 }
@@ -31,8 +31,6 @@ header {
 body {
   background-color: #c5c5c5d5;
   align-self: center;
-  align-items: center;
-  justify-content: center;
   width: 90%;
   height: 95%;
   margin: 0;
@@ -71,8 +69,8 @@ body {
   flex-basis: calc(33% - 10vw); /* Set the width of each product card to 33.33% minus 20px for margin */
   margin: 2%;
   display: inline-block;
-  width: 20%;
-  height: 40%;
+  width: 15%;
+  height: 30%;
   margin-right: 3%;
   background-color: #f5efef;
   border-radius: 2%;
@@ -106,8 +104,10 @@ body {
 .product-card__details {
   padding: 1vw;
   text-align: center;
-  font-size: 1.8vw;
-
+  font-size: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .product-card__name {
@@ -134,7 +134,7 @@ nav {
   background-color: #10025f;
   color:#d2e3f5;
   display: flex;
-  justify-content: center;
+
   align-items: center;
   font-size: 1.8vw;
 }
@@ -146,7 +146,10 @@ nav {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-
+.navbutton:hover {
+  background-color: #78bee7;
+  border-radius: 5px;
+}
 ul {
   list-style: none;
   display: flex;
@@ -165,10 +168,12 @@ li {
 .open-sign {
   color: #d10000;
   font-weight: bold;
+  display: inline-block;
   text-shadow: #d10000;
+  align-self: left;
   position: absolute;
-  left: 0;
-  margin-left: 12%; /* add some margin to separate the open sign from the text */
+  margin: 0; /* add some margin to separate the open sign from the text */
+
   font-size: 1.8vw;
   animation: blink 5s infinite; /* use the blink animation for the sign */
 }
@@ -177,7 +182,7 @@ li {
   display: inline-block;
   position: absolute;
   top: 0;
-  left: 0;
+  left:0;
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom right, rgba(248, 0, 0, 0.5), transparent);
@@ -188,6 +193,8 @@ li {
   font-size: 5vw;
   vertical-align: middle;
   text-shadow: #d10000;
+  margin-right: 0%;
+
 }
 .dot::before {
   content: '';
@@ -207,3 +214,18 @@ li {
     opacity: 0;
   }
 }
+.opentimeslist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  margin: 0;
+}
+.opentimes{
+  display: flex;
+  flex-direction: column;
+  font-size: 1vw;
+  }
+  .open{
+    margin: 0;
+    }
