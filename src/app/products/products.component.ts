@@ -30,7 +30,9 @@ changeKat(kategorie: string){
 }
   ngOnInit(): void{
     this.getProducts();
-    this.title = this.productsService.title;
+    this.productsService.title.subscribe((response) =>{
+      this.title = response.title;
+    });
     this.logo= this.productsService.logo;
     this.kategorien = this.productsService.kategorien;
     this.opentimes = this.productsService.opentimes

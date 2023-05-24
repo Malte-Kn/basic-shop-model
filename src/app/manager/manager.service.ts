@@ -47,10 +47,19 @@ export class ManagerService {
   }
   setOpentimes(opentimes:Opentimes){
     //console.log(opentimes);
-    return this.httpClient.post("http://localhost:3000/products/open",opentimes);
+    return this.httpClient.post("http://localhost:3000/products/open",{opentimes}).subscribe(
+      (response) => {
+        console.log('Set info successful:', response);
+        // Handle the response data
+      },
+      (error) => {
+        console.error('Error setting info:', error);
+        // Handle the error
+      }
+    );
   }
   getOpentimes(){
-    return this.httpClient.get<any>("http://localhost:3000/products/open");
+    return this.httpClient.get<Opentimes>("http://localhost:3000/products/open");
     // .subscribe(
     //   (response) => {
     //     console.log(response);

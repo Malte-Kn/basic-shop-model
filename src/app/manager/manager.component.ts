@@ -6,7 +6,7 @@ import { ManagerService } from './manager.service';
 import { Product } from 'basic-shop-backend/src/products/products.service';
 import { Opentimes } from 'basic-shop-backend/src/products/products.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
+import { Location } from '@angular/common';
 
 
 
@@ -24,7 +24,7 @@ export class ManagerComponent implements OnInit{
   msg = "";
   sanitizer: any;
   static pw: string | undefined;
-  opentimes: Opentimes = {monday:"9am - 5pm",tuesday:"9am - 5pm",wednesday:"9:00 - Do 1:00",thursday: "9:00 - 17:00",friday: "8:00 - 17:00",saturday: "9:00 - 17:00", sunday:"9:00 - 17:00"};
+  opentimes: Opentimes = {monday:"9am - 5pm",tuesday:"9am - 15pm",wednesday:"9:00 - Do 1:00",thursday: "9:00 - 17:00",friday: "8:00 - 17:00",saturday: "9:00 - 17:00", sunday:"9:00 - 17:00"};
   opentimes$: Observable<any> | undefined;
   ManagerComponent: any;
   fileEvent(e:any){
@@ -41,7 +41,7 @@ export class ManagerComponent implements OnInit{
   imageBlobUrl: any;
   products$: Observable<any> | undefined;
   product: Product | undefined;
-  constructor(private readonly domSanitizer: DomSanitizer, private managerService: ManagerService) { }
+  constructor(private readonly domSanitizer: DomSanitizer, private managerService: ManagerService, private location: Location) { }
   newProduct: Product = {
     name: 'Name', price: 999, id: 1,
     imageUrl: new File([], '', { type: '' })
@@ -188,6 +188,7 @@ changeInfo(titl:string, info:string){
   this.managerService.getTitle().subscribe((response) =>{
     this.title = response.title;
   });
+  window.location.reload();
 }
  cropImage() {
   // Get the uploaded file
@@ -218,9 +219,9 @@ changeInfo(titl:string, info:string){
     this.logo= this.managerService.logo;
     this.getProducts();
     //this.ManagerComponent.pw = this.managerService.pw;
-    // this.managerService.getOpentimes().subscribe((res: Opentimes[]) =>{
-    //   this.opentimes = res;
-    // });
+    await this.managerService.getOpentimes().subscribe((res: Opentimes) =>{
+      this.opentimes = res;
+    });
     this.managerService.getTitle().subscribe((response) =>{
       this.title = response.title;
     });

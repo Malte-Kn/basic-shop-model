@@ -15,7 +15,7 @@ const httpOptions = {
 export class ProductsService {
 
   constructor(private httpClient: HttpClient,private managerService: ManagerService) { };
-  title = this.managerService.title;
+  title = this.managerService.getTitle();
   logo = this.managerService.logo;
   kategorien = this.managerService.kategorien;
   opentimes = this.managerService.getOpentimes();
