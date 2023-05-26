@@ -11,8 +11,10 @@ import { ManagerComponent } from '../manager/manager.component';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  info: string = '';
   title: string = '';
   logo: string = '';
+  loc:string = '';
   kategorien: string[]= [];
   opentimes : Opentimes ={monday:"9am - 5pm",tuesday:"9am - 15pm",wednesday:"9:00 - Do 1:00",thursday: "9:00 - 17:00",friday: "8:00 - 17:00",saturday: "9:00 - 17:00", sunday:"9:00 - 17:00"};
   subscription = new Subscription();
@@ -32,6 +34,10 @@ changeKat(kategorie: string){
     this.getProducts();
     this.productsService.title.subscribe((response) =>{
       this.title = response.title;
+    });
+    this.productsService.infos.subscribe((response) =>{
+      this.info = response[0].info;
+      this.loc =response[1].location;
     });
     this.productsService.opentimes.subscribe((res: Opentimes) =>{
       this.opentimes = res;

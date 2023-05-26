@@ -39,8 +39,14 @@ body {
 .title {
   font-size: 5vw;
   margin: 0%;
+  display: flex;
   text-transform: uppercase;
   padding-left: 0%;
+}
+.location{
+  font-size: 0.8vw;
+  align-self: right;
+  margin-left: auto;
 }
 .ourProducts{
   color: #00087a;

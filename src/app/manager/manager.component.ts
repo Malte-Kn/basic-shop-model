@@ -52,6 +52,7 @@ export class ManagerComponent implements OnInit{
 
   title = "";
   info = this.managerService.info;
+  loc = "";
   files: { [key: string]: File; } ={"test":this.file};
   addProduct(product:Product) {
     this.products$ = this.managerService.addProducts(product);
@@ -182,13 +183,20 @@ public getopentimes(){
   this.opentimes = this.managerService.opentimes;
   console.log(this.opentimes);
 }
-
-changeInfo(titl:string, info:string){
-  this.managerService.setInfo({title: titl});
+changeInfo(title:string, info:string, location:string){
+  this.changeTitle(title);
+  this.managerService.setInfo([{info:info},{location:location}]);
+  this.managerService.getInfo().subscribe((response) =>{
+    this.info = response[0].info;
+    this.loc = response[1].location;
+  });
+  window.location.reload();
+}
+changeTitle(titl:string){
+  this.managerService.setTitle({title: titl});
   this.managerService.getTitle().subscribe((response) =>{
     this.title = response.title;
   });
-  window.location.reload();
 }
  cropImage() {
   // Get the uploaded file
@@ -225,7 +233,10 @@ changeInfo(titl:string, info:string){
     this.managerService.getTitle().subscribe((response) =>{
       this.title = response.title;
     });
-
+    this.managerService.getInfo().subscribe((response) =>{
+      this.info = response[0].info;
+      this.loc = response[1].location;
+    });
   }
 }
 function express() {

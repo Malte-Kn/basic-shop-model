@@ -73,7 +73,7 @@ export class ManagerService {
     //return this.httpClient.get("http://localhost:3000/products/open");//<{opentimes: string[]}>
     return this.opentimes;
   }
-  setInfo(title:{title:string}){
+  setTitle(title:{title:string}){
     console.log(title)
     return this.httpClient.post("http://localhost:3000/products/title", {title}).subscribe(
       (response) => {
@@ -88,21 +88,23 @@ export class ManagerService {
   }
   getTitle(){
     return this.httpClient.get<any>("http://localhost:3000/products/title")
-  //   .subscribe(
-  //     (response) => {
-  //       console.log(response);
-  //       this.title = response[0].title;
-  //       console.log(this.title);
-  //       return this.title;
 
-  //     },
-  //     (error) => {
-  //       // Handle any errors here
-  //       console.error(error);
-  //     }
-  //   );
-  //   console.log(this.title +"2");
-  //   return this.title;
 
    }
+   getInfo(){
+    return this.httpClient.get<any>("http://localhost:3000/products/info")
+   }
+   setInfo(infos:[{info:string},{location:string}]){
+    console.log(infos)
+    return this.httpClient.post("http://localhost:3000/products/info", infos).subscribe(
+      (response) => {
+        console.log('Set info successful:', response);
+        // Handle the response data
+      },
+      (error) => {
+        console.error('Error setting info:', error);
+        // Handle the error
+      }
+    );
+  }
 }

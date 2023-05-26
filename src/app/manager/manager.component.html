@@ -7,6 +7,7 @@
     <h1 class="title" >
       <img class="product-logo" [src]="logo" alt="Product Logo" aligne = "left" width="10%" height="12%" >
       {{title}}
+      <p class="location">📍{{loc}}</p>
     </h1>
       <div class="header-container">
 
@@ -18,7 +19,7 @@
 
 
       <h2>Change Titel</h2>
-      <form (submit)="changeInfo(title,info)">
+      <form (submit)="changeInfo(title,info,loc)">
         <label>
           Name:
           <input type="text" [(ngModel)]="title" name="Title" required>
@@ -28,6 +29,12 @@
           Info:
           <input type="text" [(ngModel)]="info" name="Info" required>
         </label>
+        <br>
+        <label>
+          Adress:
+          <input type="text" [(ngModel)]="loc" name="location" required>
+        </label>
+        <br>
         <button type="submit">Update Info</button>
       </form>
 <!-- Add Product Form -->
