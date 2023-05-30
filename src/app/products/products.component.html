@@ -8,7 +8,8 @@
         {{title}}
         <p class="location">📍{{loc}}</p>
       </h1>
-      <div class="open-sign"><span class="dot">·</span>Open</div>
+      <div *ngIf="isOpen(); else elseBlock" class="open-sign"><span class="dot">·</span>Open</div>
+      <ng-template  #elseBlock ><div class="open-sign">Closed</div></ng-template>
         <div class="header-container">
 
         <p class="slogan">{{info}}</p>
