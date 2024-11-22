@@ -1,7 +1,7 @@
 # BasicShopModel
 
 This repository contains a basic framework to present products of any shop.
-
+It is a simple playground of an Angular Web-App to learn and test.
 
 ## Using this repository
 
